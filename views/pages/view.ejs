@@ -1,0 +1,42 @@
+<%- include("partials/header") %>
+
+<% if (loggedin) { %>
+    <div class="userInfo">
+        <img class="userAvt" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar %>.png?size=4096" alt=""> <p><b>ID <%= user.id %></b></p> <p><b><%= user.username %>#<%= user.discriminator %></b></p>
+        <br>
+        <p>Public</p>
+        <form method="post">
+            <label class="switch">
+                <input name="btn" value="public" type="checkbox" <%= public %>>
+                <span class="slider round"></span> <button style="margin-left: 80px;" class="btn" type="submit">Save</button>
+            </label>
+        </form> 
+    </div>
+
+
+    
+    <div id="upload">
+        <form id="uploadForm" enctype="multipart/form-data" method="post">
+            <input type="file" multiple required name="userFile"/>
+            <input class="btn btn-file" type="submit" value="Upload File" name="submit">
+        </form>
+    </div>
+<% } else { %>
+    
+<% } %>
+
+
+
+
+
+
+
+
+<div class="files">
+    <% files.forEach(file => { %>
+        <div class="file">
+            <a href="<%= deleteURL %>/?file=<%= file %>"><button class="btn btn-file"><b>Delete</b></button></a> : <a href="<%= nowURL %>/?file=<%= file %>"><%= file %></a>
+            <hr>
+        </div>
+    <% }) %>
+</div>
